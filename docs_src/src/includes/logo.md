@@ -1,5 +1,7 @@
-# [Svelte<span>Docs</span>](/) #
+# ![Logo](static/logo.png) #
 
 <style>
-    span{color:var(--light)}
+    img{
+        width: 52px;
+    }
 </style>

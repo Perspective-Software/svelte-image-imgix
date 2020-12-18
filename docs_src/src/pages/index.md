@@ -1,5 +1,5 @@
 ---
-layout: 'default'
+layout: 'no_sidebar'
 title: false
 ---
 ## Example
