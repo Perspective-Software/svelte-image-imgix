@@ -59,7 +59,7 @@
         <div style="position: relative; overflow: hidden;">
             <div style="width:100%; padding-bottom:{imageRatio};" />
             <img
-                class="placeholder {className}"
+                class="placeholder {placeholderClassName}"
                 src={placeholderSrc}
                 alt={`${alt} placeholder`}
                 use:onPlaceholderLoad
