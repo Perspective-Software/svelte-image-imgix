@@ -3,8 +3,6 @@
     import Imgix from 'imgix-core-js';
 
     export let alt = '';
-    export let width = null;
-    export let height = null;
     export let src = '';
     export let ratio = null;
     export let sizes = '(max-width: 1000px) 100vw, 1000px';
@@ -62,7 +60,7 @@
             />
             <picture>
                 <source srcset={srcset} sizes={sizes} />
-                <img src={src} alt={alt} width={width} height={height} use:onLoad class="main" />
+                <img src={src} alt={alt} use:onLoad class="main" />
             </picture>
         </div>
     </div>

@@ -1,4 +1,5 @@
 * [Getting Started](getting-started)
-* Components
-    - [Button](components/button)
+* [Properties](properties)  
+* Examples
+    - [Basic](examples/basic)
 * [Github](https://github.com/Perspective-Software/svelte-image-imgix)
