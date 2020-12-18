@@ -1,0 +1,28 @@
+{
+  "name": "svelte-image-imgix",
+  "version": "1.0.0",
+  "description": "Viewport aware lazy loading imgix images for Svelte",
+  "svelte": "src/Image.svelte",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "cd ./docs_src && npm run deploy",
+    "dev": "cd ./docs_src && npm run dev"
+  },
+  "keywords": [
+    "imgix",
+    "svelte",
+    "lazy",
+    "viewport"
+  ],
+  "author": "Christian Korndoerfer",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "prettier-plugin-svelte": "^1.4.2"
+  },
+  "dependencies": {
+    "imgix-core-js": "^2.3.2",
+    "svelte": "^3.31.0",
+    "svelte-waypoint": "^0.1.4"
+  }
+}

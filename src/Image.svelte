@@ -1,0 +1,102 @@
+<script>
+    import Waypoint from 'svelte-waypoint';
+    import Imgix from 'imgix-core-js';
+
+    export let alt = '';
+    export let width = null;
+    export let height = null;
+    export let src = '';
+    export let ratio = null;
+    export let sizes = '(max-width: 1000px) 100vw, 1000px';
+    export let offset = 0;
+    export let threshold = 1.0;
+    export let lazy = true;
+    export let imgixParams = {};
+    export let placeholderSize = 120;
+    export let blurAmount = 500;
+
+    let loaded = !lazy;
+    let calcedRatio = '10%';
+
+    const domain = new URL(src).hostname;
+    const path = new URL(src).pathname;
+    const imgix = new Imgix({ domain });
+
+    const onLoad = (img) => {
+        img.onload = () => (loaded = true);
+    };
+
+    const onPlaceholderLoad = (img) => {
+        img.onload = () => {
+            return (calcedRatio = `${(img.naturalHeight * 100) / img.naturalWidth}%`);
+        };
+    };
+
+    const placeholderImgixParams = {
+        ...imgixParams,
+        blur: blurAmount,
+        w: placeholderSize,
+        auto: ['format', 'compress'],
+    };
+
+    $: srcset = imgix.buildSrcSet(path, imgixParams);
+    $: placeholderSrc = imgix.buildURL(path, placeholderImgixParams);
+    $: imageRatio = ratio ? ratio : calcedRatio;
+</script>
+
+<Waypoint
+    style="min-height: 100px; width: 100%;"
+    once
+    threshold={threshold}
+    offset={offset}
+    disabled={!lazy}
+>
+    <div class:loaded style="position: relative; width: 100%;">
+        <div style="position: relative; overflow: hidden;">
+            <div style="width:100%; padding-bottom:{imageRatio};" />
+            <img
+                class="placeholder"
+                src={placeholderSrc}
+                alt={`${alt} placeholder`}
+                use:onPlaceholderLoad
+            />
+            <picture>
+                <source srcset={srcset} sizes={sizes} />
+                <img src={src} alt={alt} width={width} height={height} use:onLoad class="main" />
+            </picture>
+        </div>
+    </div>
+</Waypoint>
+
+<style>
+    img {
+        object-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        will-change: opacity;
+    }
+
+    .placeholder {
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+        transition: opacity 1200ms ease-out;
+        transition-delay: 0.4s;
+    }
+
+    .main {
+        opacity: 0;
+        transition: opacity 1200ms ease-out;
+        transition-delay: 0.4s;
+    }
+
+    .loaded .placeholder {
+        opacity: 0;
+    }
+
+    .loaded .main {
+        opacity: 1;
+    }
+</style>
