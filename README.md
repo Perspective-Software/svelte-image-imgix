@@ -1,6 +1,6 @@
 # svelte-image-imgix
 
-Lazy loading images from Imgix. Heavily inspired by svelte-image.
+Lazy loading images from Imgix. Heavily inspired by [svelte-image](https://github.com/matyunya/svelte-image).
 
 Documentation & Demo
 
@@ -22,5 +22,5 @@ Enjoy:
 
 `npm run dev` will start a local dev server on localhost:5000
 
-Thanks @svelte-docs
+Thanks [@svelte-docs](https://github.com/AlexxNB/svelte-docs)
 

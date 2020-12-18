@@ -8,6 +8,10 @@
     "deploy": "cd ./docs_src && npm run deploy",
     "dev": "cd ./docs_src && npm run dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Perspective-Software/svelte-image-imgix"
+  },
   "keywords": [
     "imgix",
     "svelte",
