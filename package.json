@@ -1,6 +1,6 @@
 {
   "name": "svelte-image-imgix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Viewport aware lazy loading imgix images for Svelte",
   "svelte": "src/Image.svelte",
   "main": "src/index.js",

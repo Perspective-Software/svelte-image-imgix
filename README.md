@@ -1,6 +1,6 @@
 # svelte-image-imgix
 
-Lazy loading images from Imgix. Heavily inspired by [svelte-image](https://github.com/matyunya/svelte-image).
+Lazy loading images from Imgix using [svelte-waypoint](https://github.com/matyunya/svelte-waypoint). Also heavily inspired by [svelte-image](https://github.com/matyunya/svelte-image).
 
 [Documentation & Demo](https://perspective-software.github.io/svelte-image-imgix/)
 
