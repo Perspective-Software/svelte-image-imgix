@@ -2,4 +2,7 @@
 * [Properties](properties)  
 * Examples
     - [Basic](examples/basic)
+    - [Styling](examples/styling)
+    - [Ratio](examples/ratio)
+    - [Blur](examples/blur)
 * [Github](https://github.com/Perspective-Software/svelte-image-imgix)

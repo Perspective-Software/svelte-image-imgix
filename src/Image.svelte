@@ -11,7 +11,9 @@
     export let lazy = true;
     export let imgixParams = {};
     export let placeholderSize = 120;
-    export let blurAmount = 500;
+    export let blur = 500;
+    export let className = '';
+    export let placeholderClassName = '';
 
     let loaded = !lazy;
     let calcedRatio = '10%';
@@ -21,7 +23,11 @@
     const imgix = new Imgix({ domain });
 
     const onLoad = (img) => {
-        img.onload = () => (loaded = true);
+        img.onload = () => {
+            loaded = true;
+            // Recalculate for exact ratio
+            calcedRatio = `${(img.naturalHeight * 100) / img.naturalWidth}%`;
+        }
     };
 
     const onPlaceholderLoad = (img) => {
@@ -32,7 +38,7 @@
 
     const placeholderImgixParams = {
         ...imgixParams,
-        blur: blurAmount,
+        blur,
         w: placeholderSize,
         auto: ['format', 'compress'],
     };
@@ -53,14 +59,14 @@
         <div style="position: relative; overflow: hidden;">
             <div style="width:100%; padding-bottom:{imageRatio};" />
             <img
-                class="placeholder"
+                class="placeholder {className}"
                 src={placeholderSrc}
                 alt={`${alt} placeholder`}
                 use:onPlaceholderLoad
             />
             <picture>
                 <source srcset={srcset} sizes={sizes} />
-                <img src={src} alt={alt} use:onLoad class="main" />
+                <img src={src} alt={alt} use:onLoad class="main {className}" />
             </picture>
         </div>
     </div>
