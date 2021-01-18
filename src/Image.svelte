@@ -19,7 +19,8 @@
     let calcedRatio = '10%';
 
     const domain = new URL(src).hostname;
-    const path = new URL(src).pathname;
+    const path = decodeURI( new URL(src).pathname );
+
     const imgix = new Imgix({ domain });
 
     const onLoad = (img) => {
