@@ -17,13 +17,15 @@
 
     let loaded = !lazy;
     let calcedRatio = '10%';
+    let cached = false;
 
     const domain = new URL(src).hostname;
     const path = decodeURI( new URL(src).pathname );
 
     const imgix = new Imgix({ domain });
 
-    const onLoad = (img) => {
+    const imgLoad = (img) => {
+        cached = img.complete;
         img.onload = () => {
             loaded = true;
             // Recalculate for exact ratio
@@ -31,7 +33,7 @@
         }
     };
 
-    const onPlaceholderLoad = (img) => {
+    const placeholderLoad = (img) => {
         img.onload = () => {
             return (calcedRatio = `${(img.naturalHeight * 100) / img.naturalWidth}%`);
         };
@@ -59,15 +61,17 @@
     <div class:loaded style="position: relative; width: 100%;">
         <div style="position: relative; overflow: hidden;">
             <div style="width:100%; padding-bottom:{imageRatio};" />
-            <img
-                class="placeholder {placeholderClassName}"
-                src={placeholderSrc}
-                alt={`${alt} placeholder`}
-                use:onPlaceholderLoad
-            />
+            {#if !cached}
+                <img
+                    class="placeholder {placeholderClassName}"
+                    src={placeholderSrc}
+                    alt={`${alt} placeholder`}
+                    use:placeholderLoad
+                />
+            {/if}
             <picture>
                 <source srcset={srcset} sizes={sizes} />
-                <img src={src} alt={alt} use:onLoad class="main {className}" />
+                <img src={src} alt={alt} use:imgLoad class="main {className}" class:cached />
             </picture>
         </div>
     </div>
@@ -95,6 +99,12 @@
         opacity: 0;
         transition: opacity 1200ms ease-out;
         transition-delay: 0.4s;
+    }
+
+    .main.cached {
+        opacity: 1;
+        transition: none;
+        transition-delay: 0s;
     }
 
     .loaded .placeholder {
