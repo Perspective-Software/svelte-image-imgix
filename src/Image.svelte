@@ -14,6 +14,7 @@
     export let blur = 500;
     export let className = '';
     export let placeholderClassName = '';
+    export let duration = 400;
 
     let loaded = !lazy;
     let calcedRatio = '10%';
@@ -67,11 +68,12 @@
                     src={placeholderSrc}
                     alt={`${alt} placeholder`}
                     use:placeholderLoad
+                    style="--duration: {duration}ms"
                 />
             {/if}
             <picture>
                 <source srcset={srcset} sizes={sizes} />
-                <img src={src} alt={alt} use:imgLoad class="main {className}" class:cached />
+                <img src={src} alt={alt} use:imgLoad class="main {className}" class:cached style="--duration: {duration}ms" />
             </picture>
         </div>
     </div>
@@ -91,13 +93,13 @@
         opacity: 1;
         width: 100%;
         height: 100%;
-        transition: opacity 1200ms ease-out;
+        transition: opacity var(--duration) ease-out;
         transition-delay: 0.4s;
     }
 
     .main {
         opacity: 0;
-        transition: opacity 1200ms ease-out;
+        transition: opacity var(--duration) ease-out;
         transition-delay: 0.4s;
     }
 

@@ -1,5 +1,7 @@
 ## Blur
 
+Changes the blur amount of the placeholder image.
+
 ```example
 <script>
     import { Image } from 'svelte-image-imgix';
