@@ -75,7 +75,7 @@
             {/if}
             <picture>
                 <source srcset={srcset} sizes={sizes} />
-                <img src={src} alt={alt} use:imgLoad class="main {className}" class:cached style="--duration: {duration}ms" />
+                <img src={src} alt={alt} use:imgLoad class="main {className}" class:delayed class:cached style="--duration: {duration}ms" />
             </picture>
         </div>
     </div>
@@ -105,7 +105,6 @@
     .main {
         opacity: 0;
         transition: opacity var(--duration) ease-out;
-        transition-delay: 0.4s;
     }
 
     .main.cached {
