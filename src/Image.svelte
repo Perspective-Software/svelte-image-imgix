@@ -66,7 +66,6 @@
             {#if !cached}
                 <img
                     class="placeholder {placeholderClassName}"
-                    class:delayed
                     src={placeholderSrc}
                     alt={`${alt} placeholder`}
                     use:placeholderLoad
@@ -95,16 +94,17 @@
         opacity: 1;
         width: 100%;
         height: 100%;
-        transition: opacity var(--duration);
-    }
-
-    .delayed {
-        transition-delay: 0.4s;
+        transition: opacity var(--duration) ease-out;
+        transition-delay: var(--duration);
     }
 
     .main {
         opacity: 0;
         transition: opacity var(--duration) ease-out;
+    }
+
+    .main.delayed {
+        transition-delay: var(--duration);
     }
 
     .main.cached {
