@@ -10,6 +10,8 @@ placeholderSize | Natural width of the placeholder image in px (default: `120`) 
 blur | Placeholder blur amount (default: `500`) | number(optional)
 offset | svelte-waypoint offset (default: `0`) | number(optional)
 threshold | svelte-waypoint threshold (default: `1.0`) | number(optional)
+duration | fade animation duration
+delayed | delay the fade transition by 400ms
 lazy | enable/disabled svelte-waypoint lazy loading (default: `true`) | boolean(optional)
 className | CSS class applied to the final image | string(optional)
 placeholderClassName | CSS class applied to the placeholder image | string(optional)

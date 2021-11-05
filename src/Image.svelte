@@ -15,6 +15,7 @@
     export let className = '';
     export let placeholderClassName = '';
     export let duration = 400;
+    export let delayed = false;
 
     let loaded = !lazy;
     let calcedRatio = '10%';
@@ -65,6 +66,7 @@
             {#if !cached}
                 <img
                     class="placeholder {placeholderClassName}"
+                    class:delayed
                     src={placeholderSrc}
                     alt={`${alt} placeholder`}
                     use:placeholderLoad
@@ -93,7 +95,10 @@
         opacity: 1;
         width: 100%;
         height: 100%;
-        transition: opacity var(--duration) ease-out;
+        transition: opacity var(--duration);
+    }
+
+    .delayed {
         transition-delay: 0.4s;
     }
 
