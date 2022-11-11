@@ -54,7 +54,7 @@
 </script>
 
 <Waypoint
-    style="min-height: 100px; width: 100%;"
+    style="width: 100%;"
     once
     threshold={threshold}
     offset={offset}
